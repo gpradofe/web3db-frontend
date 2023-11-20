@@ -47,7 +47,7 @@ export const SqlProvider: React.FC<SqlProviderProps> = ({ children }) => {
 
     try {
       const response = await fetch(
-        "http://queryapikernel-dev.us-east-1.elasticbeanstalk.com/api/Query/SendQuery",
+        "https://connect.web3db.org/api/Query/SendQuery",
         {
           method: "POST",
           body: JSON.stringify(requestBody),
