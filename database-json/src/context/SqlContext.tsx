@@ -8,8 +8,10 @@ type SqlState = {
   hash: string | null;
   setHash: (hash: string | null) => void;
   error: string | null;
+  metamaskAccount: string | null;
+  setMetamaskAccount: (account: string | null) => void;
+  isUserLoggedIn: () => boolean;
 };
-
 const initialContext: Partial<SqlState> = {
   query: "",
   results: null,
@@ -18,6 +20,9 @@ const initialContext: Partial<SqlState> = {
   hash: null,
   setHash: () => {},
   error: null,
+  metamaskAccount: null,
+  setMetamaskAccount: () => {},
+  isUserLoggedIn: () => false,
 };
 
 export const SqlContext = createContext<Partial<SqlState>>(initialContext);
@@ -32,6 +37,7 @@ export const SqlProvider: React.FC<SqlProviderProps> = ({ children }) => {
   const [message, setMessage] = useState<string | null>(null);
   const [hash, setHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [metamaskAccount, setMetamaskAccount] = useState<string | null>(null);
 
   const runQuery = async (
     sqlQuery: string,
@@ -75,10 +81,22 @@ export const SqlProvider: React.FC<SqlProviderProps> = ({ children }) => {
       }
     }
   };
+  const isUserLoggedIn = () => metamaskAccount != null;
 
   return (
     <SqlContext.Provider
-      value={{ query, results, runQuery, message, hash, setHash, error }} // Include setHash here
+      value={{
+        query,
+        results,
+        runQuery,
+        message,
+        hash,
+        setHash,
+        error,
+        metamaskAccount,
+        setMetamaskAccount,
+        isUserLoggedIn,
+      }}
     >
       {children}
     </SqlContext.Provider>
