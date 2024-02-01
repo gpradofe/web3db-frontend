@@ -23,7 +23,7 @@ const SideBar: React.FC<{ isOpen: boolean; toggleSidebar: () => void }> = ({
         <NavList>
           <NavItem>
             <StyledNavLink
-              to="/tables"
+              to="/see-tables"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               See Tables

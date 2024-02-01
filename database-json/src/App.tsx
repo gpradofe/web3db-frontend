@@ -45,7 +45,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
       <ContentContainer>
         <Routes>
           <Route path="/run-query" element={<RunQuery />} />
-          <Route path="/see-table" element={<SeeTables />} />
+          <Route path="/see-tables" element={<SeeTables />} />
         </Routes>
       </ContentContainer>
     </>

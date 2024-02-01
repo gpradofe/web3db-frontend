@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
-import { Dropdown, Row, Col, Table, Form } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Row, Col, Table, Form } from "react-bootstrap";
 import AceEditor from "react-ace";
 import "brace/mode/sql";
 import "brace/theme/tomorrow_night_eighties";
 import "brace/ext/language_tools";
 import "brace/ext/searchbox";
 import { SqlContext } from "../../../context/SqlContext";
-import { QueryContainer, StyledButton, StyledDropdown } from "./styles";
+import { QueryContainer, StyledButton } from "./styles";
 import ace from "ace-builds/src-noconflict/ace";
 interface ResultRow {
   [key: string]: any;
@@ -14,14 +14,16 @@ interface ResultRow {
 
 const RunQuery: React.FC = () => {
   const langTools = ace.require("ace/ext/language_tools");
-
   const {
     runQuery,
     results,
     message,
     hash: contextHash,
     setHash,
+    userHashes, // Add this state to your context
+    fetchUserHashes, // Make sure this function fetches and sets userHashes in context
   } = useContext(SqlContext);
+
   const [selectedDB, setSelectedDB] = useState<string>("Select Database");
   const [inputQuery, setInputQuery] = useState<string>("");
   const [inputHash, setInputHash] = useState<string>(contextHash || "");
@@ -37,19 +39,24 @@ const RunQuery: React.FC = () => {
 
   const handleRunQuery = () => {
     const hash = inputHash || "dummy_ipfs_hash";
-    // Check if runQuery is defined
     if (runQuery) {
       runQuery(inputQuery, selectedDB, hash);
     } else {
       console.error("runQuery function is undefined");
-      // Handle the error as needed
     }
   };
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (contextHash) {
       setInputHash(contextHash);
     }
   }, [contextHash]);
+
+  useEffect(() => {
+    if (fetchUserHashes) {
+      fetchUserHashes();
+    }
+  }, [fetchUserHashes]);
   const renderTable = () => {
     if (results && results.length > 0) {
       const columns = Object.keys(results[0]);
@@ -172,11 +179,29 @@ const RunQuery: React.FC = () => {
       })
       .join(" ");
   };
-
+  const handleHashSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setInputHash(event.target.value);
+  };
   // Inside your RunQuery component
 
   return (
     <QueryContainer>
+      <Row className="mb-4">
+        <Col xs={12}>
+          <Form.Select
+            aria-label="Hash selection"
+            onChange={handleHashSelection}
+            value={inputHash}
+          >
+            <option value="">Select a hash</option>
+            {userHashes?.map((hash, index) => (
+              <option key={index} value={hash}>
+                {hash}
+              </option>
+            ))}
+          </Form.Select>
+        </Col>
+      </Row>
       <Row className="mb-4">
         <Col xs={12}>
           <AceEditor
