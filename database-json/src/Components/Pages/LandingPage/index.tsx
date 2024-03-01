@@ -8,21 +8,29 @@ import useTheme from "@mui/material/styles/useTheme";
 import Spline from "@splinetool/react-spline";
 import ResponsiveAppBar from "../../Organisms/NavBar";
 import { Avatar, Container, Grid, styled } from "@mui/material";
+import TaehoImage from "../../../Assets/Images/taeho.jpg";
+import WenzhanImage from "../../../Assets/Images/wenzhan.jpg";
+import ShankhaImage from "../../../Assets/Images/shankha.jpg";
+import GustavoImage from "../../../Assets/Images/gustavo.jpg";
+import NSFLogoURL from "../../../Assets/Images/NsfGrant.png"; // Placeholder URL for NSF logo
+import NDLogoURL from "../../../Assets/Images/NotreDame.png"; // Placeholder - Replace with actual URL
+import UGALogoURL from "../../../Assets/Images/UGA.png"; // Placeholder - Replace with actual URL
+
 const teamMembers = [
   {
     name: "Gustavo Aniceto",
     role: "Lead Developer",
     university: "University of Notre Dame",
-    imgUrl: "/path-to-gustavo-image.jpg",
+    imgUrl: GustavoImage,
   },
   {
     name: "Shankha Shubhra Mukherjee",
     role: "Lead Developer",
     university: "University of Notre Dame",
-    imgUrl: "/path-to-shankha-image.jpg",
+    imgUrl: ShankhaImage,
   },
   {
-    name: "Jake [Something I cannot Remember]",
+    name: "Jake Chandler", // Name updated as requested
     role: "Lead Developer",
     university: "University of Georgia",
     imgUrl: "/path-to-jake-image.jpg",
@@ -31,17 +39,18 @@ const teamMembers = [
 const principalInvestigators = [
   {
     name: "Taeho Jung",
-    role: "Principal Investigator",
-    university: "University of Notre Dame",
-    imgUrl: "/path-to-taeho-image.jpg",
+    role: "Assistant Professor", // Role updated
+    university: "University of Notre Dame", // Description updated as requested
+    imgUrl: TaehoImage,
   },
   {
     name: "WenZhan Song",
-    role: "Principal Investigator",
-    university: "University of Georgia",
-    imgUrl: "/path-to-wenzhan-image.jpg",
+    role: "Professor", // Role updated
+    university: "University of Georgia", // Description updated as requested
+    imgUrl: WenzhanImage,
   },
 ];
+
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   width: theme.spacing(15),
   height: theme.spacing(15),
@@ -139,6 +148,7 @@ const LandingPage: React.FC = () => {
                   without centralized coordination, with upcoming features like
                   decentralized access control with encryption.
                 </Typography>
+
                 <Button
                   variant="contained"
                   onClick={handleMetaMaskRoute}
@@ -197,6 +207,22 @@ const LandingPage: React.FC = () => {
             can move freely yet remain protected, empowering users worldwide to
             leverage their data in ways never before possible.
           </Typography>
+          {/* Disclaimer Section */}
+          <Typography
+            variant="body2"
+            sx={{
+              textAlign: "center",
+              p: 2,
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              color: "black",
+            }}
+          >
+            Use Web3DB at your own risk. Web3DB is a research-purpose project
+            that evolves and improves with state-of-the-art research conducted
+            by the team. None of the authors, contributors, principal
+            investigators, or anyone else connected with the team, in any way
+            whatsoever, can be responsible for your use of the our platform.
+          </Typography>
           {/* Team and PI Sections with improved layout */}
           <Typography variant="h4" sx={{ fontWeight: 700, mt: 6, mb: 3 }}>
             Meet the Innovators
@@ -252,34 +278,27 @@ const LandingPage: React.FC = () => {
               NSF Grant and University Affiliations
             </Typography>
             <Typography variant="h6" gutterBottom sx={{ mb: 4 }}>
-              The support from the National Science Foundation (NSF) has been
-              instrumental in propelling Web3DB's vision from concept to
-              reality. This prestigious grant underscores the innovative
-              potential and societal impact of our work, facilitating research
-              that pushes the boundaries of decentralized computing and data
-              sovereignty.
+              This project is sponsored by NSF under Grant No. OAC-2312973.
+              {/* Placeholder for NSF logo */}
             </Typography>
-            <Typography variant="h6" gutterBottom sx={{ mb: 4 }}>
-              With the NSF's backing, Web3DB has embarked on cutting-edge
-              research initiatives in collaboration with leading academic
-              institutions such as the University of Notre Dame and the
-              University of Georgia. These partnerships enrich our project with
-              a wide spectrum of expertise, from cybersecurity and blockchain
-              technology to data analytics and AI. The collaboration fosters an
-              interdisciplinary approach, crucial for addressing the complex
-              challenges of today's digital landscape.
-            </Typography>
-            <Typography variant="h6" gutterBottom sx={{ mb: 4 }}>
-              The NSF grant not only validates the significance of our efforts
-              but also enables us to contribute to the academic and scientific
-              community through shared knowledge, resources, and discoveries.
-              It's a testament to our commitment to not only advancing
-              technology but also to nurturing an ecosystem where open
-              innovation thrives. Through this collaboration, Web3DB is setting
-              new standards for data management and security, inspiring a
-              generation of researchers and developers to explore the vast
-              potential of decentralized technologies.
-            </Typography>
+            <Box sx={{ textAlign: "center", mt: 4 }}>
+              <img
+                src={NSFLogoURL}
+                alt="NSF Logo"
+                style={{ width: 100, margin: 10 }}
+              />
+              {/* Add Notre Dame and UGA logos using NDLogoURL and UGALogoURL */}
+              <img
+                src={NDLogoURL}
+                alt="Notre Dame Logo"
+                style={{ width: 100, margin: 10 }}
+              />
+              <img
+                src={UGALogoURL}
+                alt="UGA Logo"
+                style={{ width: 100, margin: 10 }}
+              />
+            </Box>
           </Box>
         </Container>
       </Box>
