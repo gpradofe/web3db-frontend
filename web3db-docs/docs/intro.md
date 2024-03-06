@@ -2,39 +2,89 @@
 sidebar_position: 1
 ---
 
-# Introduction to Our Decentralized Database Engine
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
-Welcome to the documentation for our cutting-edge project, a decentralized database engine designed to empower users with full control over their data. This project represents a significant leap forward in the way databases are traditionally conceived and operated. Our aim is to provide a robust, scalable solution that prioritizes user sovereignty and data security, leveraging the latest in decentralized technologies and access control methodologies.
+# Web3DB: Intro
+
+Welcome to the documentation for our pioneering project, a **decentralized database engine** that revolutionizes data management by empowering users with unprecedented control over their information. This groundbreaking solution represents a paradigm shift in database design and operation, leveraging cutting-edge decentralized technologies and innovative access control methodologies to deliver unparalleled data security, scalability, and user sovereignty.
+
+<Admonition type="info" title="Architecture Overview">
+  Our decentralized database engine is built upon a robust, dual-component architecture that seamlessly integrates a high-performance middle layer written in C# with a sophisticated database technology stack.
+</Admonition>
 
 ## Project Overview
 
-Our project is built on a dual-component architecture that seamlessly integrates a middle layer written in C# with a sophisticated database technology stack. This unique structure enables a dynamic, efficient bridge between the user interface and the underlying data storage/retrieval mechanisms.
+Our decentralized database engine is designed to enable efficient, real-time communication between the user interface and the underlying data storage and retrieval mechanisms, ensuring optimal performance and reliability.
 
-### Middle Layer (C#)
+<Tabs>
+  <TabItem value="middle-layer" label="Middle Layer (C#)">
+    The middle layer, developed using C# and the .NET framework, serves as the critical communication gateway between the frontend and the backend. This layer is meticulously designed to handle incoming queries and hashes with exceptional efficiency, leveraging advanced algorithms and data structures to process and dispatch requests to the backend with unparalleled precision.
 
-The middle layer serves as the heart of our communication strategy, acting as a pass-through connection between the frontend and the backend. It is designed to handle queries and hashes with high efficiency, ensuring that requests are processed and dispatched to the backend with precision. This component is critical for maintaining the fluidity and responsiveness of our system, providing a reliable conduit for data exchange.
+    <Admonition type="note" title="Key Features">
+      - Asynchronous request handling
+      - Query optimization
+      - Robust error handling
+      - Scalable architecture
+    </Admonition>
 
-### Database Technology and Setup
+    By acting as a highly optimized pass-through connection, the middle layer ensures fluid and responsive data exchange, providing a solid foundation for the decentralized database engine.
 
-At the core of our project is the advanced database technology setup, encompassing a range of powerful tools and platforms such as Spark, Hive, and IPFS nodes. This setup is the backbone of our decentralized engine, facilitating the storage, retrieval, and management of data in a way that is both innovative and user-centric.
+  </TabItem>
 
-Our system utilizes Docker Compose for orchestration, along with a suite of configuration files, to streamline the deployment and operation of our database nodes. The architecture is designed to dynamically create or modify data storage mechanisms based on the type of query received. This means that there is never a static database running; instead, databases are created and destroyed on-demand, ensuring optimal resource utilization and enhanced security.
+  <TabItem value="database-tech" label="Database Technology and Setup">
+    At the heart of our project lies a cutting-edge database technology stack that combines the power of distributed computing, big data processing, and decentralized storage. Our setup leverages industry-leading tools and platforms, including:
+
+    - **Apache Spark**: A lightning-fast cluster computing framework that enables distributed processing of large-scale data sets.
+    - **Apache Hive**: A data warehousing solution built on top of Hadoop, providing a SQL-like interface for querying and managing large datasets.
+    - **IPFS (InterPlanetary File System)**: A peer-to-peer hypermedia protocol designed to make the web faster, safer, and more open.
+
+    Our database technology stack is orchestrated using Docker Compose, which simplifies the deployment and management of multi-container applications.
+
+```yaml
+version: "3"
+services:
+  spark-master:
+    image: spark-master:latest
+    # ...
+  hive-server:
+    image: hive-server:latest
+    # ...
+  ipfs-node:
+    image: ipfs-node:latest
+    # ...
+```
+
+    One of the key innovations of our system is its ability to generate and modify data storage mechanisms on-the-fly, ensuring optimal resource utilization and enhanced security.
+
+  </TabItem>
+</Tabs>
 
 ### Decentralization and User Data Ownership
 
-A cornerstone of our philosophy is the decentralization of data storage and management. Unlike traditional databases, our engine does not maintain a constant database instance. Queries that modify data result in the creation of a new hash, reflecting changes and preserving the integrity of the data history. This approach not only minimizes storage requirements but also reinforces the user's control over their data.
+Decentralization lies at the core of our database engine's philosophy, empowering users with true ownership and control over their data. By eliminating the need for a constantly running, centralized database instance, we mitigate the risks associated with single points of failure and data breaches.
+
+<Admonition type="important">
+  Our system leverages the immutability and versioning capabilities of IPFS to ensure the integrity and preservation of data history. Each query that modifies data results in the creation of a new hash, effectively capturing the changes made while maintaining a tamper-proof record of previous states.
+</Admonition>
+
+Through our decentralized architecture, users retain complete control over their data, with the ability to grant or revoke access permissions as they see fit. This paradigm shift in data ownership puts the power back in the hands of the users, fostering trust, privacy, and security in the digital landscape.
 
 ### Future Directions: Zero Trust Access Control
 
-As we advance, our focus will shift towards integrating a decentralized, zero-trust access control policy into our network. This research aims to establish a secure, reliable framework for data access that does not rely on centralized authority, further enhancing the privacy and security of user data.
+As we continue to push the boundaries of decentralized database technology, our focus will shift towards integrating a cutting-edge, **zero-trust access control policy** into our network. This research aims to establish a secure, reliable framework for data access that eliminates the reliance on centralized authorities and traditional trust models.
+
+By leveraging advanced cryptographic techniques, such as multi-party computation and homomorphic encryption, we aim to create a decentralized access control system that enables fine-grained, dynamic permissions management without compromising data privacy or security.
 
 ## Getting Started
 
-To dive deeper into our project and explore its capabilities, please refer to the following sections of our documentation:
+To dive deeper into our decentralized database engine and explore its capabilities, please refer to the following sections of our documentation:
 
-- [Middle Layer Architecture](./middle-layer-architecture.md): An in-depth look at our C# middle layer, its design, and its role in our system.
-- [Database Technology Setup](./database-technology-setup.md): Detailed documentation on our database technologies, setup procedures, and operational guidelines.
-- [Decentralization and Data Ownership](./decentralization-and-data-ownership.md): Insights into how our project champions user data sovereignty and the technical mechanisms that support it.
-- [Research and Development](./research-and-development.md): Ongoing efforts and future plans for enhancing our decentralized database engine, including zero-trust access control policies.
+- [Middle Layer Architecture](./query-api)
+- [Database Technology Setup](./query-api)
+- [Decentralization and Data Ownership](./query-api)
+- [Research and Development](./query-api)
 
-Thank you for your interest in our project. We are excited to embark on this journey together, pushing the boundaries of database technology and data sovereignty.
+We invite you to join us on this transformative journey as we redefine the landscape of database technology and champion the cause of user data sovereignty. Together, we will unlock the true potential of decentralized systems and pave the way for a more secure, transparent, and empowering digital future.
