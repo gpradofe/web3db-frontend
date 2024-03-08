@@ -79,142 +79,168 @@ const LandingPage: React.FC = () => {
     >
       <ResponsiveAppBar></ResponsiveAppBar>
 
-      <Box sx={{ position: "relative", minHeight: "100vh" }}>
-        {!isMobile && (
-          <Box sx={{ width: "100%", height: "75vh", position: "relative" }}>
-            <Box
-              sx={{
-                width: "100%",
-                height: "75vh",
-                position: "relative",
-              }}
-            >
-              <Spline scene="https://prod.spline.design/G-ZkNll36P6FOfVW/scene.splinecode" />
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  backdropFilter: "blur(5px)",
-                  backgroundColor: "rgba(0, 0, 0, 0.6)",
-                  pointerEvents: "none",
-                }}
-              />
-            </Box>
+      {!isMobile && (
+        <Box
+          sx={{
+            position: "relative",
+            width: "100%",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              "& .spline-container": {},
+            }}
+          >
+            <Spline
+              scene="https://prod.spline.design/G-ZkNll36P6FOfVW/scene.splinecode"
+              className="spline-container"
+            />
             <Box
               sx={{
                 position: "absolute",
-                top: "60%",
-                left: "15%",
-                transform: "translateY(-50%)",
-                color: "white",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                backdropFilter: "blur(5px)",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
                 pointerEvents: "none",
-                zIndex: 2,
+              }}
+            />
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "20%",
+              left: isMobile ? "5%" : "15%",
+              maxWidth: isMobile ? "90%" : "35%",
+              zIndex: 2,
+              color: "white",
+              pointerEvents: "none",
+            }}
+          >
+            <Typography
+              variant="h2"
+              component="h1"
+              gutterBottom
+              sx={{
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".5rem",
+                color: "inherit",
+                textAlign: isMobile ? "center" : "left",
               }}
             >
-              <Box
-                sx={{
-                  left: isMobile ? "5%" : "15%",
-                  transform: "translateY(-50%)",
-                  maxWidth: isMobile ? "90%" : "35%",
-                  zIndex: 2,
-                  color: "white",
-                  pointerEvents: "none",
-                }}
-              >
-                <Typography
-                  variant="h2"
-                  component="h1"
-                  gutterBottom
-                  sx={{
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".5rem",
-                    color: "inherit",
-                  }}
-                >
-                  WEB3DB.ORG
-                </Typography>
-                <Typography variant="h4" component="h2" gutterBottom>
-                  Decentralized Zero-Trust Computing and Storage
-                </Typography>
-                <Typography variant="h6" gutterBottom sx={{ my: 6 }}>
-                  The fundamental vision behind Web3DB is to return data
-                  ownership to the owner, enabling secure data sharing and
-                  fostering AI innovation. Utilizing spark nodes and IPFS, we
-                  are building a decentralized network for query processing
-                  without centralized coordination, with upcoming features like
-                  decentralized access control with encryption.
-                </Typography>
-
-                <Button
-                  variant="contained"
-                  onClick={handleMetaMaskRoute}
-                  sx={{ pointerEvents: "auto" }}
-                >
-                  {" "}
-                  Try Demo
-                </Button>
-              </Box>
-            </Box>
+              WEB3DB.ORG
+            </Typography>
+            <Typography
+              variant="h4"
+              component="h2"
+              gutterBottom
+              sx={{ textAlign: isMobile ? "center" : "left" }}
+            >
+              Decentralized Zero-Trust Computing and Storage
+            </Typography>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{ my: 6, textAlign: isMobile ? "center" : "left" }}
+            >
+              The fundamental vision behind Web3DB is to return data ownership
+              to the owner, enabling secure data sharing and fostering AI
+              innovation. Utilizing spark nodes and IPFS, we are building a
+              decentralized network for query processing without centralized
+              coordination, with upcoming features like decentralized access
+              control with encryption.
+            </Typography>
+            <Button
+              variant="contained"
+              onClick={handleMetaMaskRoute}
+              sx={{
+                pointerEvents: "auto",
+                alignSelf: isMobile ? "center" : "flex-start",
+              }}
+            >
+              Try Demo
+            </Button>
           </Box>
-        )}
-        <Container
-          sx={{
-            color: "white",
-            py: 8,
-            mt: isMobile ? 0 : "5vh",
-            maxWidth: "lg",
-          }}
+        </Box>
+      )}
+
+      <Container
+        sx={{
+          color: "white",
+          py: 8,
+          mt: isMobile ? 0 : "5vh",
+          maxWidth: "lg",
+        }}
+      >
+        <Typography
+          variant="h3"
+          gutterBottom
+          sx={{ fontWeight: 700, mb: 4, textAlign: "center" }}
         >
+          Empowering Innovation with Web3DB
+        </Typography>
+        <Typography variant="h6" sx={{ mb: 4 }}>
+          Web3DB is redefining the landscape of digital sovereignty and data
+          management through its commitment to decentralized, zero-trust
+          computing and storage frameworks. At its core, Web3DB leverages
+          advanced decentralized technologies to enable secure, autonomous data
+          exchanges that empower individuals and organizations alike. By
+          harnessing the power of blockchain, IPFS, and smart contract
+          protocols, Web3DB introduces a new paradigm where data ownership and
+          privacy are not just priorities but foundational principles.
+        </Typography>
+        <Typography variant="h6" sx={{ mb: 4 }}>
+          Our platform stands at the vanguard of the decentralized web movement,
+          providing robust solutions for data integrity, verification, and
+          distribution without reliance on centralized authorities. This not
+          only enhances security and trust but also opens up unprecedented
+          opportunities for innovation in AI, machine learning, and beyond.
+          Through Web3DB, developers and researchers can access a global data
+          marketplace, where insights and information are shared freely yet
+          securely, catalyzing a new wave of technological advancements and
+          applications.
+        </Typography>
+        <Typography variant="h6" sx={{ mb: 4 }}>
+          The journey of Web3DB is marked by constant innovation, aiming to
+          tackle some of the most pressing challenges in data security, privacy,
+          and accessibility today. We are pioneering methods to streamline
+          decentralized query processing, enhance data encryption protocols, and
+          create a more resilient, efficient network for data storage and
+          retrieval. Our mission is to build a future where data can move freely
+          yet remain protected, empowering users worldwide to leverage their
+          data in ways never before possible.
+        </Typography>
+        <Box sx={{ my: 6, borderRadius: 2, overflow: "hidden" }}>
           <Typography
-            variant="h3"
-            gutterBottom
-            sx={{ fontWeight: 700, mb: 4, textAlign: "center" }}
+            variant="h4"
+            sx={{
+              fontWeight: 700,
+              p: 2,
+              backgroundColor: "error.main",
+              color: "white",
+              textAlign: "center",
+            }}
           >
-            Empowering Innovation with Web3DB
+            DISCLAIMER
           </Typography>
-          <Typography variant="h6" sx={{ mb: 4 }}>
-            Web3DB is redefining the landscape of digital sovereignty and data
-            management through its commitment to decentralized, zero-trust
-            computing and storage frameworks. At its core, Web3DB leverages
-            advanced decentralized technologies to enable secure, autonomous
-            data exchanges that empower individuals and organizations alike. By
-            harnessing the power of blockchain, IPFS, and smart contract
-            protocols, Web3DB introduces a new paradigm where data ownership and
-            privacy are not just priorities but foundational principles.
-          </Typography>
-          <Typography variant="h6" sx={{ mb: 4 }}>
-            Our platform stands at the vanguard of the decentralized web
-            movement, providing robust solutions for data integrity,
-            verification, and distribution without reliance on centralized
-            authorities. This not only enhances security and trust but also
-            opens up unprecedented opportunities for innovation in AI, machine
-            learning, and beyond. Through Web3DB, developers and researchers can
-            access a global data marketplace, where insights and information are
-            shared freely yet securely, catalyzing a new wave of technological
-            advancements and applications.
-          </Typography>
-          <Typography variant="h6" sx={{ mb: 4 }}>
-            The journey of Web3DB is marked by constant innovation, aiming to
-            tackle some of the most pressing challenges in data security,
-            privacy, and accessibility today. We are pioneering methods to
-            streamline decentralized query processing, enhance data encryption
-            protocols, and create a more resilient, efficient network for data
-            storage and retrieval. Our mission is to build a future where data
-            can move freely yet remain protected, empowering users worldwide to
-            leverage their data in ways never before possible.
-          </Typography>
-          {/* Disclaimer Section */}
           <Typography
             variant="body2"
             sx={{
-              textAlign: "center",
               p: 2,
               backgroundColor: "rgba(255, 255, 255, 0.8)",
               color: "black",
+              textAlign: "center",
             }}
           >
             Use Web3DB at your own risk. Web3DB is a research-purpose project
@@ -223,85 +249,84 @@ const LandingPage: React.FC = () => {
             investigators, or anyone else connected with the team, in any way
             whatsoever, can be responsible for your use of the our platform.
           </Typography>
-          {/* Team and PI Sections with improved layout */}
-          <Typography variant="h4" sx={{ fontWeight: 700, mt: 6, mb: 3 }}>
-            Meet the Innovators
-          </Typography>
-          <Grid container spacing={5} justifyContent="center">
-            {teamMembers.map((member) => (
-              <Grid item xs={12} sm={6} md={4} key={member.name}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: 2,
-                  }}
-                >
-                  <StyledAvatar src={member.imgUrl} alt={member.name} />
-                  <Typography variant="h6">{member.name}</Typography>
-                  <Typography variant="body2">
-                    {member.role}, {member.university}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+        </Box>
+        <Typography variant="h4" sx={{ fontWeight: 700, mt: 6, mb: 3 }}>
+          Meet the Innovators
+        </Typography>
+        <Grid container spacing={5} justifyContent="center">
+          {teamMembers.map((member) => (
+            <Grid item xs={12} sm={6} md={4} key={member.name}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 2,
+                }}
+              >
+                <StyledAvatar src={member.imgUrl} alt={member.name} />
+                <Typography variant="h6">{member.name}</Typography>
+                <Typography variant="body2">
+                  {member.role}, {member.university}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
 
-          <Typography variant="h4" sx={{ fontWeight: 700, mt: 8, mb: 3 }}>
-            Principal Investigators
-          </Typography>
-          <Grid container spacing={5} justifyContent="center">
-            {principalInvestigators.map((pi) => (
-              <Grid item xs={12} sm={6} key={pi.name}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: 2,
-                  }}
-                >
-                  <StyledAvatar src={pi.imgUrl} alt={pi.name} />
-                  <Typography variant="h6">{pi.name}</Typography>
-                  <Typography variant="body2">
-                    {pi.role}, {pi.university}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+        <Typography variant="h4" sx={{ fontWeight: 700, mt: 8, mb: 3 }}>
+          Principal Investigators
+        </Typography>
+        <Grid container spacing={5} justifyContent="center">
+          {principalInvestigators.map((pi) => (
+            <Grid item xs={12} sm={6} key={pi.name}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 2,
+                }}
+              >
+                <StyledAvatar src={pi.imgUrl} alt={pi.name} />
+                <Typography variant="h6">{pi.name}</Typography>
+                <Typography variant="body2">
+                  {pi.role}, {pi.university}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
 
-          {/* NSF Grant and University Affiliations */}
-          <Box sx={{ mt: 8 }}>
-            <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
-              NSF Grant and University Affiliations
-            </Typography>
-            <Typography variant="h6" gutterBottom sx={{ mb: 4 }}>
-              This project is sponsored by NSF under Grant No. OAC-2312973.
-              {/* Placeholder for NSF logo */}
-            </Typography>
-            <Box sx={{ textAlign: "center", mt: 4 }}>
-              <img
-                src={NSFLogoURL}
-                alt="NSF Logo"
-                style={{ width: 100, margin: 10 }}
-              />
-              {/* Add Notre Dame and UGA logos using NDLogoURL and UGALogoURL */}
-              <img
-                src={NDLogoURL}
-                alt="Notre Dame Logo"
-                style={{ width: 100, margin: 10 }}
-              />
-              <img
-                src={UGALogoURL}
-                alt="UGA Logo"
-                style={{ width: 100, margin: 10 }}
-              />
-            </Box>
+        {/* NSF Grant and University Affiliations */}
+        <Box sx={{ mt: 8 }}>
+          <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
+            NSF Grant and University Affiliations
+          </Typography>
+          <Typography variant="h6" gutterBottom sx={{ mb: 4 }}>
+            This project is sponsored by NSF under Grant No. OAC-2312973.
+            {/* Placeholder for NSF logo */}
+          </Typography>
+          <Box sx={{ textAlign: "center", mt: 4 }}>
+            <img
+              src={NSFLogoURL}
+              alt="NSF Logo"
+              style={{ width: 100, margin: 10 }}
+            />
+            {/* Add Notre Dame and UGA logos using NDLogoURL and UGALogoURL */}
+            <img
+              src={NDLogoURL}
+              alt="Notre Dame Logo"
+              style={{ width: 100, margin: 10 }}
+            />
+            <img
+              src={UGALogoURL}
+              alt="UGA Logo"
+              style={{ width: 100, margin: 10 }}
+            />
           </Box>
-        </Container>
-      </Box>
+        </Box>
+      </Container>
 
       <Box sx={{ textAlign: "center", py: 8 }}>
         <Button
