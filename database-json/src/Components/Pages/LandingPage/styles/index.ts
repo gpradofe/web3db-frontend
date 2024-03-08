@@ -1,9 +1,21 @@
 import styled from "styled-components";
-
-export const ButtonContainer = styled.div`
+const PageWrapper = styled.div`
+  background-color: #f0f2f5;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  gap: 20px; // Spacing between buttons
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+`;
+
+const HeroSection = styled.section`
+  text-align: center;
+`;
+
+const Tagline = styled.p`
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
 `;
 
 export const StyledButton = styled.button`
@@ -22,11 +34,10 @@ export const StyledButton = styled.button`
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
   }
 
-  // Different color for the second button
   &:last-child {
-    background-color: #008cba; // A different color for contrast
+    background-color: #008cba;
     &:hover {
-      background-color: #007b9a; // Slightly darker on hover
+      background-color: #007b9a;
     }
   }
 `;
@@ -43,9 +54,28 @@ export const LoginContainer = styled.div`
   text-align: center;
   padding: 20px;
 `;
+export const InfoSection = styled.div`
+  margin-top: 20px;
+`;
+const Title = styled.h2`
+  font-size: 3.5rem;
+  color: #007b9a; /* Example  */
+  margin-bottom: 1rem;
+`;
+export const Container = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f2f5;
+`;
 
-export const Title = styled.h2`
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: #1c1e21;
+export const Section = styled.section`
+  margin: 20px 0;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
 `;
