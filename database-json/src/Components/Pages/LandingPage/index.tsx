@@ -181,6 +181,7 @@ const LandingPage: React.FC = () => {
           py: 8,
           mt: isMobile ? 0 : "5vh",
           maxWidth: "lg",
+          textAlign: "center",
         }}
       >
         <Typography
@@ -261,7 +262,7 @@ const LandingPage: React.FC = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: 2,
+                  gap: 4,
                 }}
               >
                 <StyledAvatar src={member.imgUrl} alt={member.name} />
@@ -274,7 +275,10 @@ const LandingPage: React.FC = () => {
           ))}
         </Grid>
 
-        <Typography variant="h4" sx={{ fontWeight: 700, mt: 8, mb: 3 }}>
+        <Typography
+          variant="h4"
+          sx={{ fontWeight: 700, mt: 8, mb: 3, textAlign: "center" }}
+        >
           Principal Investigators
         </Typography>
         <Grid container spacing={5} justifyContent="center">
@@ -285,7 +289,7 @@ const LandingPage: React.FC = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: 2,
+                  gap: 4,
                 }}
               >
                 <StyledAvatar src={pi.imgUrl} alt={pi.name} />
@@ -299,12 +303,14 @@ const LandingPage: React.FC = () => {
         </Grid>
 
         {/* NSF Grant and University Affiliations */}
-        <Box sx={{ mt: 8 }}>
+        <Box sx={{ mt: 12, mb: 8, textAlign: "center" }}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
-            NSF Grant and University Affiliations
+            NSF Grant, Cascarilla Blockchain Endowment Fund, and University
+            Affiliations
           </Typography>
           <Typography variant="h6" gutterBottom sx={{ mb: 4 }}>
-            This project is sponsored by NSF under Grant No. OAC-2312973.
+            This project is sponsored by NSF under Grant No. OAC-2312973 and
+            Cascarilla Blockchain Endowment Fund.
             {/* Placeholder for NSF logo */}
           </Typography>
           <Box sx={{ textAlign: "center", mt: 4 }}>
@@ -317,12 +323,12 @@ const LandingPage: React.FC = () => {
             <img
               src={NDLogoURL}
               alt="Notre Dame Logo"
-              style={{ width: 100, margin: 10 }}
+              style={{ width: 300, margin: 10 }}
             />
             <img
               src={UGALogoURL}
               alt="UGA Logo"
-              style={{ width: 100, margin: 10 }}
+              style={{ width: 200, margin: 10 }}
             />
           </Box>
         </Box>
