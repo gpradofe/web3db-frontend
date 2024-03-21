@@ -7,14 +7,16 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import useTheme from "@mui/material/styles/useTheme";
 import Spline from "@splinetool/react-spline";
 import ResponsiveAppBar from "../../Organisms/NavBar";
-import { Avatar, Container, Grid, styled } from "@mui/material";
+import { Avatar, Container, Grid, Link, styled } from "@mui/material";
 import TaehoImage from "../../../Assets/Images/taeho.jpg";
 import WenzhanImage from "../../../Assets/Images/wenzhan.jpg";
 import ShankhaImage from "../../../Assets/Images/shankha.jpg";
 import GustavoImage from "../../../Assets/Images/gustavo.jpg";
+import JakeImage from "../../../Assets/Images/jake.jpg";
 import NSFLogoURL from "../../../Assets/Images/NsfGrant.png"; // Placeholder URL for NSF logo
 import NDLogoURL from "../../../Assets/Images/NotreDame.png"; // Placeholder - Replace with actual URL
 import UGALogoURL from "../../../Assets/Images/UGA.png"; // Placeholder - Replace with actual URL
+import LaunchIcon from "@mui/icons-material/Launch";
 
 const teamMembers = [
   {
@@ -22,32 +24,38 @@ const teamMembers = [
     role: "Lead Developer",
     university: "University of Notre Dame",
     imgUrl: GustavoImage,
+    profileUrl: "https://www.linkedin.com/in/gustavoaniceto/",
   },
   {
     name: "Shankha Shubhra Mukherjee",
     role: "Lead Developer",
     university: "University of Notre Dame",
     imgUrl: ShankhaImage,
+    profileUrl:
+      "https://www.linkedin.com/in/shankha-shubhra-mukherjee-3aba88198/",
   },
   {
-    name: "Jake Chandler", // Name updated as requested
+    name: "Jake Chandler",
     role: "Lead Developer",
     university: "University of Georgia",
-    imgUrl: "/path-to-jake-image.jpg",
+    imgUrl: JakeImage,
+    profileUrl: "https://www.linkedin.com/in/jake-chandler-a50203219/",
   },
 ];
 const principalInvestigators = [
   {
     name: "Taeho Jung",
-    role: "Assistant Professor", // Role updated
-    university: "University of Notre Dame", // Description updated as requested
+    role: "Assistant Professor",
+    university: "University of Notre Dame",
     imgUrl: TaehoImage,
+    profileUrl: "https://sites.nd.edu/taeho-jung/",
   },
   {
     name: "WenZhan Song",
-    role: "Professor", // Role updated
-    university: "University of Georgia", // Description updated as requested
+    role: "Professor",
+    university: "University of Georgia",
     imgUrl: WenzhanImage,
+    profileUrl: "https://sensorweb.engr.uga.edu/index.php/song/",
   },
 ];
 
@@ -266,7 +274,17 @@ const LandingPage: React.FC = () => {
                 }}
               >
                 <StyledAvatar src={member.imgUrl} alt={member.name} />
-                <Typography variant="h6">{member.name}</Typography>
+                <Typography variant="h6">
+                  <Link
+                    href={member.profileUrl}
+                    target="_blank"
+                    rel="noopener"
+                    sx={{ color: "white" }}
+                  >
+                    {member.name}
+                    <LaunchIcon sx={{ fontSize: "1rem", ml: 0.5 }} />
+                  </Link>
+                </Typography>
                 <Typography variant="body2">
                   {member.role}, {member.university}
                 </Typography>
@@ -293,7 +311,17 @@ const LandingPage: React.FC = () => {
                 }}
               >
                 <StyledAvatar src={pi.imgUrl} alt={pi.name} />
-                <Typography variant="h6">{pi.name}</Typography>
+                <Typography variant="h6">
+                  <Link
+                    href={pi.profileUrl}
+                    target="_blank"
+                    rel="noopener"
+                    sx={{ color: "white" }}
+                  >
+                    {pi.name}
+                    <LaunchIcon sx={{ fontSize: "1rem", ml: 0.5 }} />
+                  </Link>
+                </Typography>
                 <Typography variant="body2">
                   {pi.role}, {pi.university}
                 </Typography>
