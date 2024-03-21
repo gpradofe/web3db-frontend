@@ -59,11 +59,6 @@ const config: Config = {
           position: "left",
           label: "Docs",
         },
-        {
-          href: "https://github.com/gpradofe",
-          label: "GitHub",
-          position: "right",
-        },
       ],
     },
     footer: {
@@ -75,24 +70,6 @@ const config: Config = {
             {
               label: "Tutorial",
               to: "/docs/intro",
-            },
-          ],
-        },
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Twitter",
-              href: "https://twitter.com/gpradofe",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
-            {
-              label: "GitHub",
-              href: "https://github.com/gpradofe",
             },
           ],
         },
