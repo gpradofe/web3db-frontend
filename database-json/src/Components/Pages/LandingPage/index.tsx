@@ -12,6 +12,7 @@ import TaehoImage from "../../../Assets/Images/taeho.jpg";
 import WenzhanImage from "../../../Assets/Images/wenzhan.jpg";
 import ShankhaImage from "../../../Assets/Images/shankha.jpg";
 import GustavoImage from "../../../Assets/Images/gustavo.jpg";
+import HaijanImage from "../../../Assets/Images/HaijanPhoto.jpg";
 import JakeImage from "../../../Assets/Images/jake.jpg";
 import NSFLogoURL from "../../../Assets/Images/NsfGrant.png"; // Placeholder URL for NSF logo
 import NDLogoURL from "../../../Assets/Images/NotreDame.png"; // Placeholder - Replace with actual URL
