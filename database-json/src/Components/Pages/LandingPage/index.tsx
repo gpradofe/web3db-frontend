@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -45,7 +45,7 @@ const teamMembers = [
 const principalInvestigators = [
   {
     name: "Taeho Jung",
-    role: "Assistant Professor",
+    role: "Associate Professor",
     university: "University of Notre Dame",
     imgUrl: TaehoImage,
     profileUrl: "https://sites.nd.edu/taeho-jung/",
@@ -56,6 +56,13 @@ const principalInvestigators = [
     university: "University of Georgia",
     imgUrl: WenzhanImage,
     profileUrl: "https://sensorweb.engr.uga.edu/index.php/song/",
+  },
+  {
+    name: "Haijian Sun",
+    role: "Assistant Professor",
+    university: "University of Georgia",
+    imgUrl: HaijanImage,
+    profileUrl: "https://esi.uga.edu/",
   },
 ];
 
