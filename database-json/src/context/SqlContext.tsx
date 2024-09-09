@@ -128,7 +128,7 @@ export const SqlProvider: React.FC<SqlProviderProps> = ({ children }) => {
 
     try {
       const response = await fetch(
-        "http://129.74.152.201/api/Query/SendQuery",
+        "http://api.web3db.org/api/Query/SendQuery",
         {
           method: "POST",
           body: JSON.stringify(requestBody),
