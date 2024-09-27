@@ -1,108 +1,139 @@
----
-slug: /query-api/deployment
-sidebar_position: 0
----
-
 # Deployment
 
-The QueryAPIKernel solution can be easily deployed using Docker, which provides a consistent and reproducible environment for running the application. Docker allows you to package the application along with its dependencies into a container, making it easy to deploy and scale.
+The Web3DB API solution can be easily deployed using Docker Compose, which provides a consistent and reproducible environment for running the application. This guide will walk you through the deployment process and local certificate creation for development purposes.
 
 ## Prerequisites
 
 Before you begin, ensure that you have the following prerequisites:
 
 - Docker: Make sure you have Docker installed on your machine. If you don't have Docker installed, you can download and install it from the official website: [https://www.docker.com/get-started](https://www.docker.com/get-started)
+- Docker Compose: Docker Compose is included with Docker Desktop for Windows and macOS. For Linux, you may need to install it separately. Follow the instructions here: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
-## Building the Docker Image
+## Project Structure
 
-To build the Docker image for the QueryAPIKernel solution, follow these steps:
+Ensure that your project has the following files in the root directory:
 
-1. Navigate to the root directory of the QueryAPIKernel solution in your terminal.
+1. `docker-compose.yml`: Defines the services and configuration for Docker Compose.
+2. `Dockerfile`: Contains instructions for building the Docker image.
 
-2. Run the following command to build the Docker image:
+## Local Certificate Creation
 
-```bash
-docker build -t queryapikernel .
-```
+For local development and testing, the Dockerfile includes steps to generate a development certificate. This certificate is not trusted by default, but it's sufficient for development purposes. Here's how the certificate is created:
 
-This command will build the Docker image using the provided `Dockerfile` and tag it as `queryapikernel`. The `.` at the end specifies the build context, which is the current directory.
+1. In the Dockerfile, we use the `dotnet dev-certs` command to generate a self-signed certificate:
 
-The `Dockerfile` contains the instructions for building the image, such as specifying the base image, copying the application files, installing dependencies, and configuring the runtime environment.
+   ```dockerfile
+   RUN dotnet dev-certs https -ep /app/aspnetapp.pfx -p password
+   ```
 
-## Running the Docker Container
+2. The certificate is then copied to the final image:
 
-Once the Docker image is built, you can run a container based on that image. To run the QueryAPIKernel container, use the following command:
+   ```dockerfile
+   COPY --from=build /app/aspnetapp.pfx /https/aspnetapp.pfx
+   ```
 
-```bash
-docker run -d -p 80:80 -p 443:443 --name queryapikernel-container queryapikernel
-```
+3. Environment variables are set to configure Kestrel to use this certificate:
 
-Let's break down the command:
+   ```dockerfile
+   ENV ASPNETCORE_URLS="https://+:443;http://+:80"
+   ENV ASPNETCORE_HTTPS_PORT=443
+   ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+   ENV ASPNETCORE_Kestrel__Certificates__Default__Password=password
+   ```
 
-- `-d`: Runs the container in detached mode, which means it runs in the background.
-- `-p 80:80 -p 443:443`: Maps the container's ports 80 and 443 to the host's ports 80 and 443, respectively. This allows accessing the application using the host's IP or domain.
-- `--name queryapikernel-container`: Assigns a name to the container for easier identification and management.
-- `queryapikernel`: Specifies the image to use for creating the container.
+## Deploying with Docker Compose
+
+To deploy the Web3DB API solution using Docker Compose, follow these steps:
+
+1. Open a terminal and navigate to the root directory of your project (where the `docker-compose.yml` and `Dockerfile` are located).
+
+2. Build and start the Docker containers:
+
+   ```bash
+   docker-compose up -d --build
+   ```
+
+   This command will build the Docker image using the provided `Dockerfile`, create and start the containers defined in the `docker-compose.yml` file.
 
 ## Accessing the Application
 
-After the container is up and running, you can access the QueryAPIKernel application by opening a web browser and navigating to `http://localhost` (for HTTP) or `https://localhost` (for HTTPS).
+After the containers are up and running, you can access the Web3DB API application by opening a web browser and navigating to:
+
+- `http://localhost` (for HTTP)
+- `https://localhost` (for HTTPS)
+
+Note: When accessing the application via HTTPS, you may see a browser warning about an untrusted certificate. This is expected for the development certificate. You can proceed by accepting the risk (the exact process varies by browser).
 
 If you are deploying the application on a remote server, replace `localhost` with the server's IP address or domain name.
 
-## Additional Docker Commands
+## Platform-Specific Notes
 
-Here are some additional Docker commands that can be useful for managing the QueryAPIKernel container:
+### Windows
 
-- To stop the running container:
+The development certificate should work out of the box. No additional steps are required.
+
+### macOS
+
+You may see a security warning when accessing the HTTPS endpoint. You can temporarily trust the certificate for your current session:
+
+1. Click on the warning icon in the address bar.
+2. Click on "View Certificate".
+3. Expand the "Trust" section and select "Always trust" for "When using this certificate".
+
+### Linux
+
+Most Linux distributions will not trust the development certificate by default. You can either:
+
+1. Use the HTTP endpoint for development purposes.
+2. Add an exception for the certificate in your browser when prompted.
+3. For a more permanent solution, you can export the certificate from the container and add it to your system's trust store (the exact process varies by distribution).
+
+## Additional Docker Compose Commands
+
+Here are some useful Docker Compose commands for managing the Web3DB API containers:
+
+- Stop the running containers:
 
   ```bash
-  docker stop queryapikernel-container
+  docker-compose down
   ```
 
-- To start a stopped container:
+- Start the containers:
 
   ```bash
-  docker start queryapikernel-container
+  docker-compose up -d
   ```
 
-- To remove the container:
+- View the logs of the containers:
 
   ```bash
-  docker rm queryapikernel-container
+  docker-compose logs
   ```
 
-- To view the logs of the container:
-
+- Rebuild the images and restart the containers:
   ```bash
-  docker logs queryapikernel-container
+  docker-compose up -d --build
   ```
 
-## Deploying to Production
+## Troubleshooting
 
-When deploying the QueryAPIKernel solution to a production environment, consider the following additional steps:
+If you encounter any issues accessing the application via HTTPS:
 
-1. **Set Environment Variables**: Use environment variables to configure sensitive information such as database connection strings, API keys, and other settings. You can pass environment variables to the container using the `-e` flag during the `docker run` command.
-
-2. **Use a Reverse Proxy**: In a production environment, it's recommended to use a reverse proxy like Nginx or Apache in front of the QueryAPIKernel container. The reverse proxy can handle tasks like SSL termination, load balancing, and request routing. If you don't have Nginx or Apache installed, you can download them from their official websites:
-
-   - Nginx: [https://nginx.org/en/download.html](https://nginx.org/en/download.html)
-   - Apache: [https://httpd.apache.org/download.cgi](https://httpd.apache.org/download.cgi)
-
-3. **Configure Logging and Monitoring**: Set up proper logging and monitoring solutions to track the application's performance, errors, and usage metrics. You can use tools like ELK stack (Elasticsearch, Logstash, Kibana) or Prometheus and Grafana for logging and monitoring. If you need to install these tools, refer to their official documentation:
-
-   - ELK stack: [https://www.elastic.co/guide/index.html](https://www.elastic.co/guide/index.html)
-   - Prometheus: [https://prometheus.io/docs/introduction/overview/](https://prometheus.io/docs/introduction/overview/)
-   - Grafana: [https://grafana.com/docs/grafana/latest/installation/](https://grafana.com/docs/grafana/latest/installation/)
-
-4. **Implement Continuous Integration and Deployment (CI/CD)**: Automate the build, testing, and deployment process using CI/CD pipelines. This ensures consistent and reliable deployments and reduces the risk of manual errors. Popular CI/CD tools include Jenkins, GitLab CI/CD, and Azure DevOps. If you need to set up a CI/CD pipeline, refer to the documentation of your chosen CI/CD tool.
-
-5. **Backup and Disaster Recovery**: Regularly backup your application data and configurations. Have a disaster recovery plan in place to minimize downtime and data loss in case of any unforeseen events. You can use tools like Docker volumes or cloud-based storage solutions for data backup.
+1. Ensure that both port 80 and 443 are exposed and not in use by other applications.
+2. Check the container logs for any error messages:
+   ```bash
+   docker-compose logs web3db-api
+   ```
+3. Verify that the certificate is being generated correctly by inspecting the container:
+   ```bash
+   docker exec -it <container_id> ls /https
+   ```
+   You should see the `aspnetapp.pfx` file listed.
 
 ## Conclusion
 
-Deploying the QueryAPIKernel solution using Docker simplifies the deployment process and provides a consistent runtime environment. By following the steps outlined in this guide, you can easily build the Docker image, run the container, and access the application.
+By following this guide, you should be able to deploy the Web3DB API solution using Docker Compose with a development certificate. The process is designed to work across all platforms (Windows, macOS, and Linux), although you may need to handle certificate trust warnings differently depending on your operating system and browser.
 
-Remember to consider additional factors such as environment variables, reverse proxy, logging, monitoring, CI/CD, and backup when deploying to a production environment.
+Remember that this setup is intended for development purposes. For production deployments, you should use a properly trusted SSL/TLS certificate.
 
-If you have any further questions or need assistance with the deployment process, please refer to the Docker documentation or reach out to our support team.
+If you encounter any issues or need further assistance, please refer to the Docker and Docker Compose documentation or reach out to our support team.
